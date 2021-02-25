@@ -1,0 +1,50 @@
+补充-linux下dnw软件的使用
+1.linux下dnw获取
+(1)源码包获取
+(2)编译和安装
+2.开发板连接到linux下
+(1)开发板设置USB启动，开机，windows设备管理器中提示发现新硬件
+按住电源键不松开
+(2)VMware菜单：虚拟机->可移动设备->Samsung S5PC110 SEC Test B/D，点击连接
+(3)成功连接后现象：1、Windows下设备管理器没了；2、ls /dev/secbulk0 设备节点自动出现
+3.使用dnw进行下载uboot.bin
+按住电源键不松开
+(1)dnw -a 0xd0020010 x210_usb.bin   
+(2)dnw -a 0x23e00000 uboot.bin 
+注意：Serial-CRT软件3秒倒计时回车进入uboot模式
+成功标志：SecureCRT中成功看到了uboot的启动信息，并且进入了uboot命令行。
+(3)	在SecsureCRT中
+	输入fdisk -c 0
+	解释：正确的uboot启动后一定要先fdisk -c 0进行分区，然后再fastboot
+(4)uboot的参数中bootcmd和bootargs一定要正确。
+步骤：在secureCRT中输入命令
+	1、set bootcmd 'movi read kernel 30008000; bootm 30008000'
+	2、set bootargs console=ttySAC2,115200 root=/dev/mmcblk0p2 rw init=/linuxrc rootfstype=ext3
+	3、save
+	4、输入fastboot
+(5)fastboot烧录(参考1.3.4开发板刷机2 fastboot使用)
+fastboot介绍
+	fastboot是uboot中用来快速下载镜像的一个命令，fastboot同时还是一个windows上的软件。
+fastboot下载时要注意1：fastboot是使用USB线进行数据传输的，所以fastboot执行之前要先连接开发板和主机之	间的usb线。
+fastboot下载时要注意2：需要安装驱动。
+	fastboot驱动（X210 Android驱动）的安装
+	驱动位置：A盘\tools\USB驱动\x210_android_driver
+
+	把镜像复制到windows下的fastboot文件件下，在windows命令行中cd切换到fastboot文件夹下：
+	
+	烧录linux+QT
+	fastboot flash bootloader uboot_inand.bin	烧uboot
+	fastboot flash kernel zImage-qt			烧linux kernel
+	fastboot flash system rootfs_qt4.ext3		烧rootfs
+uboot的参数不用特意设置（因为我们刷了专为linux+QT定制的uboot，这个uboot中估计已经预制好了所有的启动参数）
+	烧录android2.3
+	fastboot flash bootloader uboot.bin	烧uboot
+	fastboot flash kernel zImage-android	烧linux kernel
+	fastboot flash system x210.img		烧android rom
+注意：android2.3中使用了串口0，所以启动后要把串口插到串口0中，不然串口没有任何启动信息出来。android2.3中屏幕上的logo是在左上角（也是个刷机成功的标志）
+	烧录android4.0.4
+	fastboot flash bootloader uboot.bin		烧uboot
+	fastboot flash kernel zImage-android		烧linux kernel
+	fastboot flash system x210.img			烧android rom
+	
+	烧写完成后按RESET按键，拨码开关拨到SD卡启动

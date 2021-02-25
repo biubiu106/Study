@@ -1,0 +1,36 @@
+
+刷机经验：
+
+1.sd卡的写保护，卡上有个开关，打开开关即可解决，真坑爹
+
+2.secureCRT软件每次使用都要重新注册，注册方法见（说明.txt）
+
+3.dnw|驱动安装
+	1.破解驱动程序，破解见安装说明.txt
+	2.禁用数字签名，百度图文教程见http://jingyan.baidu.com/article/624e74594dbc8d34e8ba5aa6.html）
+
+4.x210_fusing_tools软件sd卡烧写不成功右键管理员权限运行
+	方法：右键管理员权限运行程序试试
+
+5.串口终端输入fastboot后   出现error：no MBR is found at SD/MMC
+	方法：先fdisk -c 0去重新分区，然后再fastboot
+
+6.dnw刷机时刷不进去，进度条不动
+	方法：1.重写地址（即使你的地址正确），多试几遍就好
+		  2.重启开发板，重刷
+
+7.dnw刷x210_usb.bin和uboot.bin时串口终端没有信息出现，只出现Uart negotiation error
+	方法：把uboot.bin换为inand_uboot.bin(可能是uboot.bin匹配)
+	
+8. dos下刷到x210.img时出现writing system.....FAILED(remote.image too large for partition)
+	方法：拔掉跳冒-->重启开发板-->3秒内按下enter-->先fdisk -0去重新分区， 	然后再fastboot再刷/uboot.bin和zImage-android    重启即可
+	（原因可能是inand_uboot.bin下的分区和uboot.bin的分区不一样）
+
+9.未完待续.....
+
+									
+整理自自己刷机经验，部分参考他人，如果大家刷机过程中遇到其它问题，请附带解决方法添加进来（或联系我），以便惠及后来者，在此敬谢。
+											
+											在路上：1350656341	
+												2016.04.15
+											
