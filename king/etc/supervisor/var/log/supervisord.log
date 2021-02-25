@@ -1,0 +1,120 @@
+2020-03-25 23:09:51,445 INFO Included extra file "/home/king/etc/supervisor/conf.d/myconf.ini" during parsing
+2020-03-25 23:09:51,445 INFO Set uid to user 0 succeeded
+2020-03-25 23:09:51,449 INFO RPC interface 'supervisor' initialized
+2020-03-25 23:09:51,449 CRIT Server 'unix_http_server' running without any HTTP authentication checking
+2020-03-25 23:09:51,450 INFO daemonizing the supervisord process
+2020-03-25 23:09:51,451 INFO supervisord started with pid 11986
+2020-03-25 23:09:52,454 INFO spawned: 'myweb_dj' with pid 11992
+2020-03-25 23:09:54,130 INFO success: myweb_dj entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2020-03-26 18:58:18,771 INFO waiting for myweb_dj to stop
+2020-03-26 18:58:19,437 INFO stopped: myweb_dj (exit status 0)
+2020-03-26 18:58:19,441 INFO spawned: 'myweb_dj' with pid 6355
+2020-03-26 18:58:21,366 INFO success: myweb_dj entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2020-03-26 19:09:46,133 INFO waiting for myweb_dj to stop
+2020-03-26 19:09:47,118 INFO stopped: myweb_dj (exit status 0)
+2020-03-26 19:09:47,122 INFO spawned: 'myweb_dj' with pid 7931
+2020-03-26 19:09:48,821 INFO success: myweb_dj entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2020-03-26 19:23:30,934 INFO waiting for myweb_dj to stop
+2020-03-26 19:23:31,592 INFO stopped: myweb_dj (exit status 0)
+2020-03-26 19:23:31,596 INFO spawned: 'myweb_dj' with pid 9769
+2020-03-26 19:23:33,242 INFO success: myweb_dj entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2020-03-29 00:29:56,944 INFO waiting for myweb_dj to stop
+2020-03-29 00:29:57,687 INFO stopped: myweb_dj (exit status 0)
+2020-03-29 00:29:57,691 INFO spawned: 'myweb_dj' with pid 30299
+2020-03-29 00:29:59,386 INFO success: myweb_dj entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2020-03-29 00:36:12,093 INFO waiting for myweb_dj to stop
+2020-03-29 00:36:12,677 INFO stopped: myweb_dj (exit status 0)
+2020-03-29 00:36:12,682 INFO spawned: 'myweb_dj' with pid 31143
+2020-03-29 00:36:14,437 INFO success: myweb_dj entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2020-03-29 00:42:08,552 INFO waiting for myweb_dj to stop
+2020-03-29 00:42:09,413 INFO stopped: myweb_dj (exit status 0)
+2020-03-29 00:42:09,417 INFO spawned: 'myweb_dj' with pid 31910
+2020-03-29 00:42:11,073 INFO success: myweb_dj entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2020-03-29 00:49:39,351 INFO waiting for myweb_dj to stop
+2020-03-29 00:49:40,119 INFO stopped: myweb_dj (exit status 0)
+2020-03-29 00:49:40,124 INFO spawned: 'myweb_dj' with pid 394
+2020-03-29 00:49:41,771 INFO success: myweb_dj entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2020-03-29 00:52:08,603 INFO waiting for myweb_dj to stop
+2020-03-29 00:52:09,696 INFO stopped: myweb_dj (exit status 0)
+2020-03-29 00:52:09,701 INFO spawned: 'myweb_dj' with pid 759
+2020-03-29 00:52:11,395 INFO success: myweb_dj entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2020-03-29 01:50:16,737 INFO waiting for myweb_dj to stop
+2020-03-29 01:50:17,723 INFO stopped: myweb_dj (exit status 0)
+2020-03-29 01:50:17,727 INFO spawned: 'myweb_dj' with pid 8228
+2020-03-29 01:50:19,421 INFO success: myweb_dj entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2020-03-31 20:37:22,139 INFO waiting for myweb_dj to stop
+2020-03-31 20:37:23,300 INFO stopped: myweb_dj (exit status 0)
+2020-03-31 20:37:23,304 INFO spawned: 'myweb_dj' with pid 6441
+2020-03-31 20:37:25,000 INFO success: myweb_dj entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2020-03-31 20:38:16,327 INFO waiting for myweb_dj to stop
+2020-03-31 20:38:17,568 INFO stopped: myweb_dj (exit status 0)
+2020-03-31 20:38:17,572 INFO spawned: 'myweb_dj' with pid 6564
+2020-03-31 20:38:19,240 INFO success: myweb_dj entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2020-03-31 20:46:27,666 INFO Included extra file "/home/king/etc/supervisor/conf.d/myconf.ini" during parsing
+2020-03-31 20:46:27,667 INFO Set uid to user 0 succeeded
+2020-03-31 20:46:27,978 INFO RPC interface 'supervisor' initialized
+2020-03-31 20:46:27,978 CRIT Server 'unix_http_server' running without any HTTP authentication checking
+2020-03-31 20:46:27,979 INFO daemonizing the supervisord process
+2020-03-31 20:46:27,981 INFO supervisord started with pid 1937
+2020-03-31 20:46:28,984 INFO spawned: 'myweb_dj' with pid 1938
+2020-03-31 20:46:29,985 INFO success: myweb_dj entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2020-03-31 20:59:10,047 INFO Set uid to user 0 succeeded
+2020-03-31 21:02:08,361 INFO waiting for myweb_dj to stop
+2020-03-31 21:02:09,562 INFO stopped: myweb_dj (exit status 0)
+2020-03-31 21:02:09,566 INFO spawned: 'myweb_dj' with pid 4039
+2020-03-31 21:02:11,257 INFO success: myweb_dj entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2020-03-31 21:04:16,840 INFO waiting for myweb_dj to stop
+2020-03-31 21:04:17,300 INFO stopped: myweb_dj (exit status 0)
+2020-03-31 21:04:17,304 INFO spawned: 'myweb_dj' with pid 4334
+2020-03-31 21:04:19,001 INFO success: myweb_dj entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2020-03-31 21:18:55,065 INFO exited: myweb_dj (exit status 0; expected)
+2020-03-31 21:20:56,375 INFO spawned: 'myweb_dj' with pid 6541
+2020-03-31 21:20:58,076 INFO success: myweb_dj entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2020-03-31 21:26:44,330 INFO waiting for myweb_dj to stop
+2020-03-31 21:26:44,915 INFO stopped: myweb_dj (exit status 0)
+2020-03-31 21:26:44,919 INFO spawned: 'myweb_dj' with pid 7310
+2020-03-31 21:26:46,576 INFO success: myweb_dj entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2020-03-31 21:30:17,613 INFO waiting for myweb_dj to stop
+2020-03-31 21:30:18,065 INFO stopped: myweb_dj (exit status 0)
+2020-03-31 21:30:18,069 INFO spawned: 'myweb_dj' with pid 7793
+2020-03-31 21:30:19,759 INFO success: myweb_dj entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2020-03-31 21:35:03,187 INFO waiting for myweb_dj to stop
+2020-03-31 21:35:03,946 INFO stopped: myweb_dj (exit status 0)
+2020-03-31 21:35:03,950 INFO spawned: 'myweb_dj' with pid 8399
+2020-03-31 21:35:05,643 INFO success: myweb_dj entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2020-04-01 21:40:01,091 INFO waiting for myweb_dj to stop
+2020-04-01 21:40:01,468 INFO stopped: myweb_dj (exit status 0)
+2020-04-01 21:40:01,472 INFO spawned: 'myweb_dj' with pid 32343
+2020-04-01 21:40:03,250 INFO success: myweb_dj entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2020-04-01 21:43:54,285 INFO waiting for myweb_dj to stop
+2020-04-01 21:43:54,758 INFO stopped: myweb_dj (exit status 0)
+2020-04-01 21:43:54,762 INFO spawned: 'myweb_dj' with pid 410
+2020-04-01 21:43:56,416 INFO success: myweb_dj entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2020-04-03 12:16:46,698 INFO waiting for myweb_dj to stop
+2020-04-03 12:16:47,777 INFO stopped: myweb_dj (exit status 0)
+2020-04-03 12:16:47,781 INFO spawned: 'myweb_dj' with pid 9158
+2020-04-03 12:16:49,478 INFO success: myweb_dj entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2020-04-03 12:32:35,640 INFO waiting for myweb_dj to stop
+2020-04-03 12:32:36,311 INFO stopped: myweb_dj (exit status 0)
+2020-04-03 12:32:36,315 INFO spawned: 'myweb_dj' with pid 11256
+2020-04-03 12:32:38,001 INFO success: myweb_dj entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2020-04-03 18:37:09,385 INFO waiting for myweb_dj to stop
+2020-04-03 18:37:10,356 INFO stopped: myweb_dj (exit status 0)
+2020-04-03 18:37:10,360 INFO spawned: 'myweb_dj' with pid 25749
+2020-04-03 18:37:11,996 INFO success: myweb_dj entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2020-04-03 18:53:21,380 INFO waiting for myweb_dj to stop
+2020-04-03 18:53:22,438 INFO stopped: myweb_dj (exit status 0)
+2020-04-03 18:53:22,442 INFO spawned: 'myweb_dj' with pid 27869
+2020-04-03 18:53:24,144 INFO success: myweb_dj entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2020-04-04 16:08:31,145 INFO waiting for myweb_dj to stop
+2020-04-04 16:08:32,355 INFO stopped: myweb_dj (exit status 0)
+2020-04-04 16:08:32,359 INFO spawned: 'myweb_dj' with pid 30777
+2020-04-04 16:08:34,043 INFO success: myweb_dj entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2020-04-04 19:40:02,590 INFO waiting for myweb_dj to stop
+2020-04-04 19:40:03,778 INFO stopped: myweb_dj (exit status 0)
+2020-04-04 19:40:03,782 INFO spawned: 'myweb_dj' with pid 25283
+2020-04-04 19:40:05,491 INFO success: myweb_dj entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2020-04-04 20:20:47,214 INFO waiting for myweb_dj to stop
+2020-04-04 20:20:48,513 INFO stopped: myweb_dj (exit status 0)
+2020-04-04 20:20:48,517 INFO spawned: 'myweb_dj' with pid 30516
+2020-04-04 20:20:50,164 INFO success: myweb_dj entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)

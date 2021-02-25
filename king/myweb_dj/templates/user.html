@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>BiuBiu106</title>
+    <link rel="icon" href="/static/img/logo.ico" type="image/x-icon"/>
+</head>
+<body style="margin: 0; background-color: #dddddd">
+    <form action="/user/" method="post">
+        {% csrf_token %}
+        <div style="margin-left: 100px; margin-top: 50px;font-size: 20px">新增用户: <input type="text" require="true" name="username"></div>
+        <div style="margin-left: 100px; margin-top: 10px;font-size: 20px">新增密码: <input type="text" require="true" name="password"></div>
+        <div style="margin-left: 100px; margin-top: 10px;font-size: 20px">用户等级: <input type="number" require="true" name="user_type"></div>
+        <div style="margin-left: 100px; margin-top: 10px;font-size: 20px; display: inline"><input type="submit"  value="创建"></div>
+        <div style="margin-left: 20px; margin-top: 10px;font-size: 20px; color: red;display: inline">{{ mesinfo }}</div>
+    </form>
+    <div style="margin-left: 100px; margin-top: 10px; color: darkcyan">
+        所有用户信息：
+        {% for user in userList %}
+            <li><a href="/userdel-{{ user.id }}" style="color: red">删除</a>&nbsp序号：{{ user.id }} 用户名：{{ user.username }} 密码：{{ user.password }} 等级：{{ user.user_type }}</li>
+        {% endfor %}
+    </div>
+</body>
+</html>

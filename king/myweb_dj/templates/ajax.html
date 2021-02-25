@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <input type="text" name="ttt"/>
+    <input type="button" value="提交" onclick="subMit();"/>
+
+    <script>
+
+        function getXHR() {
+            var xhr = null;
+            if(XMLHttpRequest){
+                xhr = new XMLHttpRequest();
+            }else{
+                xhr = new ActiveXObject("Microsoft.HMLHTTP");
+            }
+            return xhr;
+        }
+        
+        function subMit() {
+            var xhr = getXHR();
+            xhr.open("POST", '/ajax_t/', true);
+
+            xhr.onreadystatechange = function() {
+                if(xhr.readyState == 4){
+                    {#    接收完毕#}
+                    console.log(xhr.responseText)
+                }
+            };
+            console.log('jjj',document.csrftoken);
+            xhr.setRequestHeader("Content-type","application/x-www-form-urlencoded");
+            xhr.send("name=root;pwd=123");
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,51 @@
+
+{% extends 'common.html' %}
+
+{% block login %}
+    <div id="i1" class="shield"></div><!-- 屏蔽层 -->
+    <!-- 登录界面 -->
+    <div class="register">
+        <div style="position: relative">
+            <div class="login-logo"></div>
+            <div class="login-title">登录Ican</div>
+        </div>
+        <form action="/login/" method="POST">
+            <!--  用户名 -->
+            {% csrf_token %}
+            <div class="login-input">
+                <div class="imge" style="background-position-x:0; background-position-y: 2px;"></div>
+                <input type="text" require="true" name="username"  class="login-submit">
+            </div>
+            <div style="height: 15px"></div>
+            <!--  密码 -->
+            <div class="login-input">
+                <div class="imge" style=" background-position-x: -48px; background-position-y: 2px;"></div>
+                <input type="password" require="true" name="password" class="login-submit">
+            </div>
+            <div style="height: 15px"></div>
+            <!--  登录 -->
+            <div style="margin: 0 auto; text-align: center;">
+                <input type="submit" class="login-dl" value="登 录"/>
+            </div>
+        </form>
+
+        <div style="height: 15px"></div>
+        <!--  其它（新用户注册及找回密码） -->
+        <div class="login-others">
+            <a href="/error404/" class="somestyle" style="float: left;">
+                新用户注册
+            </a>
+            <div style="float: left;">&nbsp</div>
+            <a href="/error404/" class="somestyle" style="float: left;">
+                找回密码
+            </a>
+            <a id="exitlongin" href="/index/" class="somestyle" style="float: right;">
+                退出登录
+            </a>
+            <div style="clear: both"></div>
+            <div style="height: 15px"></div>
+            <div style="color: red; margin: 0 auto; text-align: center">{{ error_msg }}</div>
+        </div>
+    </div>
+{% endblock %}
+
