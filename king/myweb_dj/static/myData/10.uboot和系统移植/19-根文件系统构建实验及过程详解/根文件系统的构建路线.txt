@@ -1,0 +1,62 @@
+
+根文件系统的构建路线
+
+前期准备：参照2.18中课件完成nfs方式启动文件夹形式的空rootfs和制作ext2格式的空rootfs。
+
+一：busybox
+1.下载busybox复制到ubuntu中，解压并删除原文件。
+解析：(1)busybox是一个开源项目，所以源代码可以直接从网上下载。
+	  (2)busybox的版本差异不大，版本新旧无所谓。
+	  (3)下载busybox可以去linuxidc等镜像网站，也可以去www.busybox.net官方网站下载。
+2.修改Makefile中：ARCH = arm	CROSS_COMPILE = /usr/local/arm/arm-2009q3/bin/arm-none-linux-gnueabi-
+3.make menuconfig	(参照《busybox menuconfig配置.txt》)
+4.make	(出现busybox即表示编译成功)
+5.make install	(安装前在make menuconfig配置安装目录：/my_rootfs/rootfs)
+
+二：inittab (inittab被linuxrc执行时调用)
+1.在/my_rootfs/rootfs/目录下创建etc文件夹并将inittab文件复制到/my_rootfs/rootfs/etc目录下
+inittab解析：
+	(1)# 注释
+	(2): 分隔符，分隔开各个部分。	
+	(3)每行格式id:runlevels:action:process 有些位置可空缺后冒号不能空缺，所以有时候会看到连续2个冒号	(5)action是一个条件/状态，process是一个可被执行的程序的pathname。合起来的意思就是：当满足action的条件时就会执行process这个程序。
+
+三：rcS (rcS被linuxrc执行时调用)
+1.在/my_rootfs/rootfs/etc/目录下创建init.d文件夹并将rcS文件复制到/my_rootfs/rootfs/etc/init.d目录下
+rcS解析：
+	(1)PATH=xxx (从shell脚本的语法角度分析，这一行定义了一个变量PATH)
+	export导出PATH，那么PATH就变成了一个环境变量,环境变量的作用是不带路径地执行某个程序。	
+	(2)umask是linux的一个命令，作用是设置当前用户在创建文件时的默认权限。
+	(3)mount -a 在busybox中mount -a时busybox根据文件/etc/fstab文件挂载文件系统 
+	(4)以下两行作用配置是在/dev目录下生成了很多的设备驱动文件。
+		echo /sbin/mdev > /proc/sys/kernel/hotplug
+		mdev -s 
+	(5)/bin/hostname -F /etc/sysconfig/HOSTNAME (指定主机名配置文件/etc/sysconfig/HOSTNAME)
+		
+四：fstab (fstab被rcS执行时调用)
+1.将fstab文件复制到/my_rootfs/rootfs/etc/目录下
+解析fstab:
+	# 	<file system> 	<mount point> 	<type> 	<options> 	<dump> 	<pass>
+		proc 			/proc 			proc 	defaults 	0 		0
+	将proc挂载到/proc目录下。
+2.在/my_rootfs/rootfs/目录下创建proc sys var tmp dev 这5个文件夹
+	不创建的话会提示找不到挂载点：mount: mounting proc on /proc failed: No such file or directory
+	
+五：其他
+(1)显示命令行提示符
+	将profile文件复制到/my_rootfs/rootfs/etc/目录下，作用：显示命令行提示符
+(2)系统启动后出现登录界面，可以输入用户名和密码
+	将/my_rootfs/rootfs/etc/inittab中的::askfirst:-/bin/sh修改成::sysinit:/bin/login
+	从ununtu的/etc目录下的passwd和shadow文件复制到/my_rootfs/rootfs/etc/目录下
+	修改passwd为 root:x:0:0:root:/root:/bin/sh	(busybox不支持bash脚本，要改为/bin/sh)
+	根据passwd文件知道在/my_rootfs/rootfs/目录下创建root文件夹
+	修改shadow为 root::16586:0:99999:7:::	(原乱码表示加密后的密码，删除后则可以直接登录，可用passwd命令设置新密码)
+(3)	提示：-sh: can't access tty; job control turned off
+	tty是一个串口，dev/目录下找到控制台使用的串口名s3c2410_serial2
+	将/my_rootfs/rootfs/etc/inittab中的::sysinit:/bin/login改为s3c2410_serial2::sysinit:/bin/login
+(4)getty (inittab中最常见的用于登录的程序不是/bin/login，反而是/sbin/getty。这两个差别不详)
+	将/my_rootfs/rootfs/etc/inittab中的::sysinit:/bin/login改为s3c2410_serial2::respawn:/sbin/getty -L s3c2410_serial2 115200 vt100,执行效果与之前一样。
+(5)开机自启动的实现原理就是在开机会自动执行的脚本rcS中添加上执行某个程序的语句代码即可
+(6)动态链接库的拷贝:交叉编译工具链的动态链接库在/usr/local/arm/arm-2009q3/arm-none-linux-gnueabi/libc/lib目录下，在开发板  根文件系统/my_rootfs/rootfs/目录下创建lib文件夹，将交叉编译工具链的动态链接库复制到/my_rootfs/rootfs/lib/目录下
+  命令：cp lib/*so* /my_rootfs/rootfs/lib/ -rdf (复制时要注意参数用-rdf，主要目的就是符号链接复制过来还是符号链接)
+
+

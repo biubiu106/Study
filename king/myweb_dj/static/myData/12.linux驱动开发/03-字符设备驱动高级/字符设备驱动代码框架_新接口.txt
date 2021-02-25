@@ -1,0 +1,52 @@
+
+方法：宏观上复制，细节自己修改  参考代码mycode_new
+
+/*********************************** 新老接口区别 ****************************************
+*(1)register_chrdev【old】替换成register_chrdev_region/alloc_chrdev_region + cdev_init + cdev_add【new】
+*(2)unregister_chrdev【old】替换成cdev_del + unregister_chrdev_region【new】
+
+/**************************************相关函数功能**************************************/
+*alloc_chrdev_region：自动分配设备号(得到dev_t类型的变量，这个变量同时包含了主次设备号)
+*cdev_init:初始化cdev(填充cdev)
+*cdev_alloc：动态分配cdev内存
+*(4)MAJOR宏：从dev_t类型的变量中得到主设备号
+*(5)MINOR宏：从dev_t类型的变量中得到次设备号
+*(6)MKDEV宏：由主次设备号合成得到dev_t类型的变量
+*(7)使用MAJOR、MINOR、MKDEV这些宏的代码具有可移植性
+*****************************************************************************************/
+
+1.找到一个驱动文件作为参考(copy头文件、相关宏[最末尾处]等)
+  
+2.定义一个file_operations结构体类型的变量并在注册前将其填充，例如：
+  static const struct file_operations test_fops = {
+	.owner	 = THIS_MODULE,  // 惯例，直接写即可
+	.open    = test_open,    // 应用层调用open函数时实际调用的是.open绑定的函数
+	.read    = test_read,    // 应用层调用read函数时实际调用的是.read绑定的函数
+	.write   = test_write,   // 应用层调用write函数时实际调用的是.write绑定的函数
+	.release = test_release, // 应用层调用close函数时实际调用的是.close绑定的函数
+  }
+
+3.模块的安装与卸载
+  (1)module_init宏  // 模块安装 
+     例如：module_init(chrdev_init)
+     在chrdev_init函数中调用register_chrdev_region/alloc_chrdev_region + cdev_init + cdev_add【new】进行注册
+  (2)module_exit宏  // 模块卸载
+     例如：module_exit(chrdev_exit)
+	 在chrdev_exit函数中调用cdev_del + unregister_chrdev_region【new】取消注册
+	
+4.填充步骤2绑定的相关函数主体(真正操作硬件)
+  test_open      // 可以调用request_mem_region宏,ioremap宏建立动态映射
+  test_read      // 可以调用copy_to_user函数将内核数据传递到应用层
+  test_write     // 可以调用copy_from_user函数将应用层数据传递到内核
+  test_release   // 可以调用iounmap宏,release_mem_region宏销毁动态映射
+  注：实际操作硬件寄存器时可以采用静态映射方式操作寄存器也可以采用动态映射方式操作寄存器
+  
+5.中途出错倒影式处理错误[参考5.3中mycode_new]
+
+6.自动创建/删除设备文件
+  (1)在module_init宏调用的函数中增加class_create、device_create让udev(嵌入式中用的是mdev)在应用层创建设备文件
+  (2)在module_exit宏调用的函数中增加device_destroy、class_destroy让udev(嵌入式中用的是mdev)在应用层删除设备文件
+  注：应用层要先启用udev(mdev)	方法：在根文件系统/etc/init.d/rcs中添加：echo /sbin/mdev > /proc/sys/kernel/hotplug
+  
+  
+  

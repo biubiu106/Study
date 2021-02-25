@@ -1,0 +1,30 @@
+
+gpiolib的建立：
+	1.由kernel/arch/arm/mach-s5pv210.c文件末尾找到：.map_io		= smdkc110_map_ios
+	2.在smdkc110_map_ios函数中调用s5pv210_gpiolib_init函数，这个函数便是gpiolib的开始
+	  (1)struct s3c_gpio_chip 这个结构体是三星封装的一个GPIO端口抽象（每个端口可以对应多个io口）
+	  (2)gpio_chip /*内核提供的GPIO端口抽象结构体，注册前的填充对象 */
+	3.struct s3c_gpio_chip s5pv210_gpio_4bit[] // 端口相关信息存储 
+	4.samsung_gpiolib_add_4bit_chips
+	  (1)samsung_gpiolib_add_4bit： 
+			samsung_gpiolib_4bit_input   //操作CON寄存器，设置为输入模式
+			samsung_gpiolib_4bit_output  //操作CON寄存器，设置为输出模式
+			__gpio_pm
+	  (2)s3c_gpiolib_add
+			s3c_gpiolib_set //设置DAT寄存器的值
+			s3c_gpiolib_get //读取DAT寄存器的值
+	  (3)s3c_gpiolib_add /* 添加注册函数（Samsung） */
+			gpiochip_add  /* 真正添加注册函数（内核） */
+			
+	总结：(1)填充gpio_chip然后将填充好的gpio_chip通过gpiochip_add注册到内核gpio_desc这个结构体数组中
+		  (2)这个建立过程跟之前字符设备和LED驱动框架建立差不多，区别便是gpiolib是由cpu厂家建立的，较为复杂一些罢了
+
+
+
+gpiolib的使用：相关接口函数在/include/linux/gpio.h中
+	(1)第1步：使用gpio_request申请要使用的一个GPIO【gpio_free释放申请到的IO】
+	(2)第2步：gpio_direction_input/gpio_direction_output 设置输入/输出模式
+	(3)第3步：设置输出值gpio_set_value  获取IO口值gpio_get_value
+		
+		
+	

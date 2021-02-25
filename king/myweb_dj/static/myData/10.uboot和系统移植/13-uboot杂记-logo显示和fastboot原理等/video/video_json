@@ -1,0 +1,7 @@
+[
+ ["第01讲-X210的uboot中LCD操作分析","url"],
+ ["第02讲-logo显示和LCD屏幕分辨率适配","url"],
+ ["第03讲-fastboot的基本分析","url"],
+ ["第04讲-uboot的fastboot代码分析1","url"],
+ ["第05讲-uboot的fastboot代码分析2","url"]
+]

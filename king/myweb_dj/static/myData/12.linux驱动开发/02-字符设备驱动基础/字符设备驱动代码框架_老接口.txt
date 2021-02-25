@@ -1,0 +1,31 @@
+方法：宏观上复制，细节自己修改  参考代码mycode_old
+
+1.找到一个驱动文件作为参考(copy头文件、相关宏[最末尾处]等)
+  
+2.定义一个file_operations结构体类型的变量并填充，例如：
+  static const struct file_operations test_fops = {
+	.owner	 = THIS_MODULE,  // 惯例，直接写即可
+	.open    = test_open,    // 应用层调用open函数时实际调用的是.open绑定的函数
+	.read    = test_read,    // 应用层调用read函数时实际调用的是.read绑定的函数
+	.write   = test_write,   // 应用层调用write函数时实际调用的是.write绑定的函数
+	.release = test_release, // 应用层调用close函数时实际调用的是.close绑定的函数
+  }
+
+3.模块的安装与卸载
+  (1)module_init宏  // 模块安装 
+     例如：module_init(chrdev_init)
+     在chrdev_init函数中调用register_chrdev函数注册该字符设备驱动
+  (2)module_exit宏  // 模块卸载
+     例如：module_exit(chrdev_exit)
+	 在chrdev_exit函数中调用unregister_chrdev函数注销该字符设备驱动
+  
+4.填充步骤2绑定的相关函数主体(真正操作硬件)
+  test_open      // 可以调用request_mem_region宏,ioremap宏建立动态映射
+  test_read      // 可以调用copy_to_user函数将内核数据传递到应用层
+  test_write     // 可以调用copy_from_user函数将应用层数据传递到内核
+  test_release   // 可以调用iounmap宏,release_mem_region宏销毁动态映射
+  注：实际操作硬件寄存器时可以采用静态映射方式操作硬件寄存器也可以采用动态映射方式操作寄存器
+  
+5.中途出错倒影式处理错误[参考5.3中mycode_new]
+
+

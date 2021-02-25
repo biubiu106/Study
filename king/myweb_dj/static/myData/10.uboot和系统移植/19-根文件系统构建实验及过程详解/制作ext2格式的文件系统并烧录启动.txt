@@ -1,0 +1,27 @@
+制作ext2格式的镜像并烧录启动
+
+确定文件夹格式的rootfs可用
+
+动手制作ext2格式的镜像
+(1)
+	在/my_rootfs/目录下创建文件夹ext2_rootfs
+	当前所处目录/my_rootfs/
+	dd if=/dev/zero of=rootfs.ext2 bs=1024 count=10240
+	losetup  /dev/loop1 rootfs.ext2
+	mke2fs -m 0 /dev/loop1 10240
+	mount -t ext2 /dev/loop1 ./ext2_rootfs/
+(2)进入/my_rootfs/ext2_rootfs/目录下，向ext2_rootfs中复制内容原rootfs下的内容，用cp ../rootfs/* ./ -rf
+(3) 
+	cd ..
+	umount /dev/loop1
+	losetup -d /dev/loop1
+(4)完成后得到的rootfs.ext2就是我们做好的rootfs镜像。拿去烧录即可。
+
+烧录镜像并设置合适的bootargs
+(1)使用fastboot烧录制作好的rootfs.ext2到开发板inand中
+fastboot flash system rootfs.ext2
+烧录完成后重启系统
+(2)设置bootargs为：set bootargs console=ttySAC2,115200 root=/dev/mmcblk0p2 rw init=/linuxrc rootfstype=ext2
+(3)启动后发现现象和之前nfs方式启动挂载rootfs后一样的，至此rootfs制作实验圆满完成。
+
+

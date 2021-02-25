@@ -1,0 +1,37 @@
+Busybox Settings--->
+	Build Options--->
+		[*]Build BusyBox as a static binary(no shared libs) 
+ // 配置成静态链接
+
+Busybox Settings--->		
+	Busybox Library Tuning--->
+		[*]vi-style line editing commands
+		[*]Fancy shell prompts
+
+	
+Linux Module Utilities--->
+	[ ]Simplified modutils
+	[*]insmod
+	[*]rmmod
+	[*]lsmod
+	[*]	Pretty output 
+	[*]modprobe
+	[*] Blacklist support
+	[*]depmod
+
+	
+Linux System Utilities--->[*]mdev
+	[*]Support /etc/mdev.conf
+	[*]Support subdirs/symlinks
+	[*]Support regular expressions substitutions when renaming dev
+	[*]Support command execution at device addition/removal
+	[*]Support loading of firmwares
+	
+
+Busybox Settings--->	
+	Installation Options ("make install" behavior)  ---> 
+		(/my_rootfs/rootfs) BusyBox installation prefix
+// 安装到rootfs目录下，默认安装路径无意义
+	
+	
+	

@@ -1,0 +1,17 @@
+注：很多设备驱动框架都是这个模板
+
+1.定义一个led_classdev结构体类型的变量并在注册前将其填充
+
+2.模块的安装与卸载
+  (1)module_init宏  // 模块安装 
+     例如：module_init(s5pv210_led_init)
+     在s5pv210_led_init函数中调用led_classdev_register进行注册
+  (2)module_exit宏  // 模块卸载
+     例如：module_exit(s5pv210_led_exit)
+	 在s5pv210_led_exit函数中调用led_classdev_unregister取消注册
+
+3.填充led_classdev结构体绑定的相关函数主体(真正操作硬件)
+
+4.中途出错倒影式处理错误
+
+

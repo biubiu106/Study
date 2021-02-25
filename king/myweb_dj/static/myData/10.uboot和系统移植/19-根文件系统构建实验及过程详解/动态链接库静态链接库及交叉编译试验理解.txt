@@ -1,0 +1,25 @@
+
+静态编译链接helloworld程序并执行
+(1)任务：自己写一个helloworld程序，然后交叉编译连接，然后丢到开发板根文件系统中，开机后去运行。
+(2)C程序如果使用gcc来编译则可以在主机ubuntu中运行，但是不能在开发板运行；要在开发板运行需要用arm-linux-gcc来交叉编译，但是这时候就不能在主机ubuntu中运行了。我们可以用file xx命令来查看一个elf可执行程序是哪个架构的。
+(3)静态链接：arm-linux-gcc hello.c -o hello_satic -static
+(4)实验结果：静态编译连接后生成的hello_satic已经可以成功运行。
+
+动态编译链接helloworld程序并执行
+(1)动态链接：arm-linux-gcc hello.c -o hello_dynamic
+(2)实验结果：-sh: ./hello_dynamic: not found运行时提示找不到程序。
+(3)错误分析：动态连接的hello程序中调用到了printf函数，而printf函数在动态连接时要在运行时环境（开发板的rootfs）中去寻找对应的库文件（开发板rootfs中部署的动态链接库中包含了printf函数的那个库文件）。如果找到了则printf函数就会被成功解析，然后hello_dynamic程序就会被执行；如果找不到则程序就不能被执行，命令行会提示错误信息-sh: ./hello_dynamic: not found
+(4)解决方案：将arm-linux-gcc的动态链接库文件复制到开发板rootfs的/lib目录下即可解决。
+
+2.19.11.3、找到并复制动态链接库文件到rootfs中
+(1)我们用的arm-2009q3这个交叉编译工具链的动态链接库在/usr/local/arm/arm-2009q3/arm-none-linux-gnueabi/libc/lib目录下。其他的一些交叉编译工具链中动态链接库的目录不一定在这里，要去找一下。找的方法就是find
+(2)复制动态链接库到roots/lib目录下。复制时要注意参数用-rdf，主要目的就是符号链接复制过来还是符号链接。
+复制命令：cp lib/*so* /root/porting_x210/rootfs/rootfs/lib/ -rdf
+(3)现在再去测试./hello_dynamic看看是否可以运行，实验结果是可以运行。
+
+2.19.11.4、使用strip工具去掉库中符号信息
+动态链接库so文件中包含了调试符号信息，这些符号信息在运行时是没用的（调试时用的），这些符号会占用一定空间。在传统的嵌入式系统中flash空间是有限的，为了节省空间常常把这些符号信息去掉。这样节省空间并且不影响运行。
+去掉符号命令：arm-linux-strip *so*
+实际操作后发现库文件由3.8M变成了3.0M，节省了0.8M的空间。
+
+
