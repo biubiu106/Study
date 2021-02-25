@@ -1,7 +1,0 @@
-{
-    "files.associations": {
-        "*.ph": "c",
-        "*.inc": "c",
-        "los_sem.h": "c"
-    }
-}
