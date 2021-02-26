@@ -1,0 +1,17 @@
+
+https://www.jb51.net/article/162137.htm
+
+使用方法：
+	1.创建gui工程 Tools -> External -> QtDesigner 
+	2.右击gui工程(.ui格式) -> External ->PyUIC 即可生成对应.py程序
+
+
+以下遇到问题的解决方案
+1.安装PyQt5
+	pip install --user PyQt5
+2.安装pyqt5-tools
+	pip install --user PyQt5-tools -i http://pypi.douban.com/simple --trusted-host=pypi.douban.com
+	
+3.ModuleNotFoundError: No module named ‘PyQt5.sip’
+	pip install PyQt5.sip #或卸载重安装
+	

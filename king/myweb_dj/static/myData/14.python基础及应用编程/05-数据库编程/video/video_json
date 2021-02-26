@@ -1,0 +1,17 @@
+[
+ ["第01讲-数据库介绍(Python3.5)","url"],
+ ["第02讲-数据库介绍2(Python3.5)","url"],
+ ["第03讲-mysql基本使用(Python3.5)","url"],
+ ["第04讲-mysql数据类型与创建表(Python3.5)","url"],
+ ["第05讲-mysql 增删改查(Python3.5)","url"],
+ ["第06讲-mysql 外键关联(Python3.5)","url"],
+ ["第07讲-mysql 连接查询(Python3.5)","url"],
+ ["第08讲-mysql 事务与索引(Python3.5)","url"],
+ ["第09讲-mysql python交互(Python3.5)","url"],
+ ["第10讲-sqlalchemy orm介绍(Python3.5)","url"],
+ ["第11讲-sqlalchemy 常用语法(Python3.5)","url"],
+ ["第12讲-sqlalchemy 外键关联(Python3.5)","url"],
+ ["第13讲-sqlalchemy 多外键关联(Python3.5)","url"],
+ ["第14讲-sqlalchemy 多对多关联(Python3.5)","url"],
+ ["第15讲-作业之学员管理系统开发(Python3.5)","url"]
+]

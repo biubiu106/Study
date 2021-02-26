@@ -1,0 +1,16 @@
+[
+ ["第01讲-消息队列介绍(Python3.5)","url"],
+ ["第02讲-RabbitMQ基本示例(Python3.5)","url"],
+ ["第03讲-RabbitMQ消息分发轮询(Python3.5)","url"],
+ ["第04讲-RabbitMQ消息持久化(Python3.5)","url"],
+ ["第05讲-RabbitMQ fanout广播模式(Python3.5)","url"],
+ ["第06讲-RabbitMQ direct广播模式(Python3.5)","url"],
+ ["第07讲-RabbitMQ topic细致的消息过滤广播模式(Python3.5)","url"],
+ ["第08讲-Redis string操作(Python3.5)","url"],
+ ["第09讲-RabbitMQ rpc实现(Python3.5)","url"],
+ ["第10讲-Redis hash操作(Python3.5)","url"],
+ ["第11讲-Redis集合set 和有序集合操作(Python3.5)","url"],
+ ["第12讲-Redis集合操作补充(Python3.5)","url"],
+ ["第13讲-Redis发布订阅及本节作业(Python3.5)","url"],
+ ["第14讲-上节回顾(Python3.5)","url"]
+]

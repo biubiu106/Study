@@ -1,0 +1,19 @@
+[
+ ["第01讲-网络编程Socket介绍1(Python3.5)","url"],
+ ["第02讲-网络编程Socket介绍2(Python3.5)","url"],
+ ["第03讲-Socket通信案例消息发送与接收1(Python3.5)","url"],
+ ["第04讲-Socket通信案例消息发送与接收2(Python3.5)","url"],
+ ["第05讲-上节回顾1(Python3.5)","url"],
+ ["第06讲-上节回顾2(Python3.5)","url"],
+ ["第07讲-Socket实现简单的ssh客户端(Python3.5)","url"],
+ ["第08讲-Socket实现简单的ssh服务端(Python3.5)","url"],
+ ["第09讲-Socket实现简单的ssh2(Python3.5)","url"],
+ ["第10讲-Socket粘包(Python3.5)","url"],
+ ["第11讲-Socket粘包深入编码(Python3.5)","url"],
+ ["第12讲-SocketServer(Python3.5)","url"],
+ ["第13讲-SocketServer多并发(Python3.5)","url"],
+ ["第14讲-多用户在线Ftp程序(Python3.5)","url"],
+ ["第15讲-paramiko模块详解1(Python3.5)","url"],
+ ["第16讲-paramiko模块详解2(Python3.5)","url"],
+ ["第17讲-ssh密钥讲解(Python3.5)","url"]
+]
