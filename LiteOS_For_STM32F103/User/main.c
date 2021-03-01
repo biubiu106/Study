@@ -18,6 +18,7 @@
 #include "bsp_usart.h"
 #include "lcd.h"
 #include "key.h"
+#include "los_swtmr.h"
 
 
 UINT32 handle_queue;
@@ -159,6 +160,12 @@ UINT32 QueueRead_task(void)
 	return uwRet;
 }
 
+SWTMR_PROC_FUNC my_timer_handle(UINT32 cnt)
+{
+	printf("my_timer_handle\n");
+}
+UINT16 my_timer_id;
+
 UINT32 osAppInit(void)
 {
 	UINT32 uwRet = 0;
@@ -166,24 +173,33 @@ UINT32 osAppInit(void)
 	LED0_ON;
 	SOFT_DELAY;
 	printf("Powered by LiteOS\r\n");
+
+//	uwRet = LOS_SwtmrCreate(3000, LOS_SWTMR_MODE_PERIOD, (SWTMR_PROC_FUNC)my_timer_handle, &my_timer_id, 0);
+//	if(LOS_OK != uwRet)
+//	{
+//		printf("软件定时器创建失败\n");
+//	}
+//	uwRet  = LOS_SwtmrStart(my_timer_id);
+
 	
-	uwRet = LOS_QueueCreate("TEST_QUEUE", 10, &handle_queue, 0, 16);
-	if(LOS_OK == uwRet)
-	{
+	 uwRet = LOS_QueueCreate("TEST_QUEUE", 10, &handle_queue, 0, 16);
+	 if(LOS_OK == uwRet)
+	 {
 		printf("队列创建成功");
-	}
-	
-	uwRet = QueueWrite_task();
-	if(uwRet !=LOS_OK)
-	{
+	 }
+
+	 uwRet = QueueWrite_task();
+	 if(uwRet !=LOS_OK)
+	 {
 		return uwRet;
-	}
-	
-	uwRet = QueueRead_task();
-	if(uwRet !=LOS_OK)
-	{
+	 }
+
+	 uwRet = QueueRead_task();
+	 if(uwRet !=LOS_OK)
+	 {
 		return uwRet;
-	}
+	 }
+
 
 
 	return LOS_OK;
