@@ -166,6 +166,12 @@ SWTMR_PROC_FUNC my_timer_handle(UINT32 cnt)
 }
 UINT16 my_timer_id;
 
+SWTMR_PROC_FUNC my_timer2_handle(UINT32 cnt)
+{
+	printf("my_timer2_handle\n");
+}
+UINT16 my_timer_id2;
+
 UINT32 osAppInit(void)
 {
 	UINT32 uwRet = 0;
@@ -174,13 +180,21 @@ UINT32 osAppInit(void)
 	SOFT_DELAY;
 	printf("Powered by LiteOS\r\n");
 
-//	uwRet = LOS_SwtmrCreate(3000, LOS_SWTMR_MODE_PERIOD, (SWTMR_PROC_FUNC)my_timer_handle, &my_timer_id, 0);
-//	if(LOS_OK != uwRet)
-//	{
-//		printf("软件定时器创建失败\n");
-//	}
-//	uwRet  = LOS_SwtmrStart(my_timer_id);
+	uwRet = LOS_SwtmrCreate(3000, LOS_SWTMR_MODE_PERIOD, (SWTMR_PROC_FUNC)my_timer_handle, &my_timer_id, 0);
+	if(LOS_OK != uwRet)
+	{
+		printf("软件定时器创建失败\n");
+	}
+	printf("my_timer_id:%d\n", my_timer_id);
+	uwRet  = LOS_SwtmrStart(my_timer_id);
 
+		uwRet = LOS_SwtmrCreate(3000, LOS_SWTMR_MODE_PERIOD, (SWTMR_PROC_FUNC)my_timer_handle, &my_timer_id2, 0);
+	if(LOS_OK != uwRet)
+	{
+		printf("软件定时器创建失败\n");
+	}
+	uwRet  = LOS_SwtmrStart(my_timer_id2);
+	printf("my_timer_id2:%d\n", my_timer_id2);
 	
 	 uwRet = LOS_QueueCreate("TEST_QUEUE", 10, &handle_queue, 0, 16);
 	 if(LOS_OK == uwRet)
